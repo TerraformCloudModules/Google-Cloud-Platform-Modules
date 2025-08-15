@@ -1,15 +1,18 @@
-module "service_account" {
-  source                       = "./modules/service-account"
-  project_id                   = var.project_id # Required : Hardcode it here or add it in "modules/gcp-service-account/variables.tf"
-  service_account_id           = var.service_account_id # Required : Hardcode it here or add it in "modules/gcp-service-account/variables.tf"
-  service_account_display_name = var.service_account_display_name # Required : Hardcode it here or add it in "modules/gcp-service-account/variables.tf"
-  
-  # Optional: You can also override the default roles   
-  service_account_roles = var.service_account_roles # Optional
-  
-  # Optional: You can also override the default admin roles
-  admin_roles = var.admin_roles # Optional
-  
-  # Enable admin roles only when needed
-  enable_admin_roles = false
+locals {
+  configs = nonsensitive(module.config.configs)
+}
+
+# Include a configuration module for managing shared or global configuration settings
+module "config" {
+  source = "./modules/gcp-config"
+}
+
+module "gcp-service-account" {
+  source = "./modules/gcp-service-account"
+  project_id = local.configs.project_id
+  service_account_display_name = local.configs.service_account_display_name
+  service_account_description = local.configs.service_account_description
+  service_account_id = local.configs.service_account_id
+  service_account_roles = local.configs.service_account_roles
+  enable_admin_roles = local.configs.enable_admin_roles
 }

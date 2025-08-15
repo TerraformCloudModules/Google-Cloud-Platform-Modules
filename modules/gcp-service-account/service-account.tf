@@ -3,7 +3,7 @@ resource "google_service_account" "service_account" {
   account_id   = var.service_account_id
   display_name = var.service_account_display_name
   project      = var.project_id
-  description  = "Service account for GCP"
+  description  = var.service_account_description
 }
 
 # Assign standard operational roles to the service account

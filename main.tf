@@ -1,3 +1,7 @@
+locals {
+  configs = nonsensitive(module.config.configs)
+}
+
 # Include a configuration module for managing shared or global configuration settings
 module "config" {
   source = "./modules/gcp-config"

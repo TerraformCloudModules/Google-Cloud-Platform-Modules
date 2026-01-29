@@ -1,0 +1,20 @@
+name: Deploy to Self-Hosted Server (Jha Runner)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Copy code to server directory
+        run: |
+          echo "Deploying code on same server..."
+          rsync -av --delete ./ /var/www/my-app/

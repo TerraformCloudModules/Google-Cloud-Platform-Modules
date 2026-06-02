@@ -35,3 +35,18 @@ module "gcp-service-account" {
     module.gcp-project
   ]
 }
+
+# 4. GCS Bucket module deployed inside the project
+module "gcp-bucket" {
+  source             = "./modules/gcp-bucket"
+  project_id         = module.gcp-project.project_id
+  bucket_name        = local.configs.bucket_name
+  bucket_location    = try(local.configs.bucket_location, "US")
+  storage_class      = try(local.configs.storage_class, "STANDARD")
+  versioning_enabled = try(local.configs.versioning_enabled, false)
+
+  # Ensure the project exists and Storage APIs are enabled first
+  depends_on = [
+    module.gcp-project
+  ]
+}

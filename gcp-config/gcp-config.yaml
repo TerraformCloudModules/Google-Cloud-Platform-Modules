@@ -11,6 +11,7 @@ folder_id: ""                               # (Optional) Parent GCP Folder ID
 apis_to_enable:
   - "iam.googleapis.com"
   - "sqladmin.googleapis.com"
+  - "storage.googleapis.com"     # Enables Google Cloud Storage API (free to activate)
   # - "compute.googleapis.com"   # Requires Billing Account
   # - "container.googleapis.com" # Requires Billing Account (GKE)
   # - "run.googleapis.com"       # Requires Billing Account (Cloud Run)
@@ -32,3 +33,9 @@ enable_admin_roles: true
 admin_roles:
   - "roles/iam.serviceAccountAdmin"
   - "roles/resourcemanager.projectIamAdmin"
+
+# Storage Bucket Configuration
+bucket_name: "ankush-tf-framework-bucket-v2" # Needs to be globally unique across all of GCP
+bucket_location: "US"                       # Multi-regional or regional location (e.g. US, EU, us-central1)
+storage_class: "STANDARD"                   # STANDARD, NEARLINE, COLDLINE, ARCHIVE
+versioning_enabled: true                    # Toggle versioning to retain historical states

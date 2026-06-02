@@ -4,7 +4,8 @@ locals {
 
 # 1. Config module to read and parse the local YAML variables
 module "config" {
-  source = "./modules/gcp-config"
+  source      = "./modules/gcp-config"
+  environment = terraform.workspace == "default" ? "dev" : terraform.workspace
 }
 
 # 2. Bootstrap module to conditionally create the project and enable GCP APIs

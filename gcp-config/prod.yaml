@@ -1,10 +1,13 @@
 # GCP Project & Bootstrap Configuration
 create_project: true                                # Toggle to true if you want Terraform to create the project
-project_id: "ankush-tf-framework-v2"                # The unique project ID (required)
+project_id: "ankush-tf-framework-v2"                # The unique project ID (shared)
 project_name: "Ankush Terraform Framework"          # Display name for the GCP project
-billing_account: ""                                 # Associated billing account ID (required for GKE/SQL, optional for basic SA creation)
+billing_account: ""                                 # Associated billing account ID (shared)
 org_id: ""                                          # (Optional) Parent GCP Organization ID
 folder_id: ""                                       # (Optional) Parent GCP Folder ID
+
+# Environment Name
+environment: "prod"
 
 # APIs to automatically enable in the project
 # Note: Paid APIs (like compute, container/GKE, run) require an active Billing Account linked to the project.
@@ -16,26 +19,20 @@ apis_to_enable:
   # - "container.googleapis.com"              # Requires Billing Account (GKE)
   # - "run.googleapis.com"                    # Requires Billing Account (Cloud Run)
 
-# Service Account Configuration
-service_account_id: "ankush-tf-sa"
-service_account_display_name: "Ankush Terraform SA"
-service_account_description: "Ankush Terraform SA"
+# Service Account Configuration (Prod Specific Name)
+service_account_id: "ankush-tf-sa-prod"
+service_account_display_name: "Ankush Terraform SA Prod"
+service_account_description: "Ankush Terraform SA Prod Environment"
 service_account_roles:
   - "roles/owner"
-  # - "roles/serviceusage.serviceUsageAdmin"
-  # - "roles/storage.admin"
-  # - "roles/compute.instanceAdmin"
-  # - "roles/iam.serviceAccountAdmin"
-  # - "roles/iam.serviceAccounts.actAs"
-  # - "roles/resourcemanager.projectIamAdmin"
 
 enable_admin_roles: true
 admin_roles:
   - "roles/iam.serviceAccountAdmin"
   - "roles/resourcemanager.projectIamAdmin"
 
-# Storage Bucket Configuration
-bucket_name: "ankush-tf-framework-bucket-v2"              # Needs to be globally unique across all of GCP
-bucket_location: "US"                                     # Multi-regional or regional location (e.g. US, EU, us-central1)
+# Storage Bucket Configuration (Prod Specific Name)
+bucket_name: "ankush-tf-framework-bucket-v2-prod"
+bucket_location: "US"                                     # Multi-regional or regional location
 storage_class: "STANDARD"                                 # STANDARD, NEARLINE, COLDLINE, ARCHIVE
 versioning_enabled: true                                  # Toggle versioning to retain historical states

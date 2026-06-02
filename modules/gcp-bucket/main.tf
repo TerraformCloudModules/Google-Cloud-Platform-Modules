@@ -1,6 +1,6 @@
 # Create the Google Cloud Storage Bucket
 resource "google_storage_bucket" "bucket" {
-  name          = var.bucket_name
+  name          = "${var.bucket_name}-${var.environment}"
   project       = var.project_id
   location      = var.bucket_location
   storage_class = var.storage_class

@@ -2,15 +2,17 @@
 locals {
   config_path = var.config_path != "" ? var.config_path : "${path.root}/gcp-config"
 
-  # Resolve the environment name: default to var.environment, otherwise terraform.workspace.
-  # If terraform.workspace is "default", fallback to "dev".
-  resolved_environment = var.environment != "" ? var.environment : (
-    terraform.workspace == "default" ? "dev" : terraform.workspace
-  )
+  # List YAML files from the config directory
+  files_base = toset([
+    for f in fileset(local.config_path, "*.yaml") : f
+  ])
 
-  # Load the single corresponding YAML file
-  config_file = "${local.config_path}/${local.resolved_environment}.yaml"
+  # Decode YAML files
+  configs_base = [
+    for f in local.files_base :
+    yamldecode(templatefile("${local.config_path}/${f}", {}))
+  ]
 
-  # Decode the file
-  configs = yamldecode(templatefile(local.config_file, {}))
+  # Merge all configurations
+  configs = merge(local.configs_base...)
 }

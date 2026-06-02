@@ -1,9 +1,9 @@
 # Create the service account
 resource "google_service_account" "service_account" {
-  account_id   = var.service_account_id
-  display_name = var.service_account_display_name
+  account_id   = "${var.service_account_id}-${var.environment}"
+  display_name = "${var.service_account_display_name} (${upper(var.environment)})"
   project      = var.project_id
-  description  = var.service_account_description
+  description  = "${var.service_account_description} - ${upper(var.environment)} Environment"
 }
 
 # Assign standard operational roles to the service account

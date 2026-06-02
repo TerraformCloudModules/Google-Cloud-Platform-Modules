@@ -39,3 +39,8 @@ variable "service_account_description" {
   type        = string
   default     = "" # Set to empty string to allow for default value to be set in the module
 }
+
+variable "environment" {
+  description = "The environment name (e.g., dev, staging, prod). Appended to resource names."
+  type        = string
+}

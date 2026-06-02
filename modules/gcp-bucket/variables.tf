@@ -25,3 +25,8 @@ variable "versioning_enabled" {
   type        = bool
   default     = false
 }
+
+variable "environment" {
+  description = "The environment name (e.g., dev, staging, prod). Appended to resource names."
+  type        = string
+}

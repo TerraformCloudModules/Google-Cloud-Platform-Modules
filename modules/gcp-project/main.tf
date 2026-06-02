@@ -6,6 +6,7 @@ resource "google_project" "project" {
   org_id          = var.org_id != "" ? var.org_id : null
   folder_id       = var.folder_id != "" ? var.folder_id : null
   billing_account = var.billing_account != "" ? var.billing_account : null
+  deletion_policy = "DELETE"
 
   lifecycle {
     prevent_destroy = false

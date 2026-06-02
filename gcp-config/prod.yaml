@@ -1,0 +1,38 @@
+# GCP Project & Bootstrap Configuration
+create_project: true                                # Toggle to true if you want Terraform to create the project
+project_id: "ankush-tf-framework-v2"                # The unique project ID (shared)
+project_name: "Ankush Terraform Framework"          # Display name for the GCP project
+billing_account: ""                                 # Associated billing account ID (shared)
+org_id: ""                                          # (Optional) Parent GCP Organization ID
+folder_id: ""                                       # (Optional) Parent GCP Folder ID
+
+# Environment Name
+environment: "prod"
+
+# APIs to automatically enable in the project
+# Note: Paid APIs (like compute, container/GKE, run) require an active Billing Account linked to the project.
+apis_to_enable:
+  - "iam.googleapis.com"
+  - "sqladmin.googleapis.com"
+  - "storage.googleapis.com"                  # Enables Google Cloud Storage API (free to activate)
+  # - "compute.googleapis.com"                # Requires Billing Account
+  # - "container.googleapis.com"              # Requires Billing Account (GKE)
+  # - "run.googleapis.com"                    # Requires Billing Account (Cloud Run)
+
+# Service Account Configuration (Prod Specific Name)
+service_account_id: "ankush-tf-sa-prod"
+service_account_display_name: "Ankush Terraform SA Prod"
+service_account_description: "Ankush Terraform SA Prod Environment"
+service_account_roles:
+  - "roles/owner"
+
+enable_admin_roles: true
+admin_roles:
+  - "roles/iam.serviceAccountAdmin"
+  - "roles/resourcemanager.projectIamAdmin"
+
+# Storage Bucket Configuration (Prod Specific Name)
+bucket_name: "ankush-tf-framework-bucket-v2-prod"
+bucket_location: "US"                                     # Multi-regional or regional location
+storage_class: "STANDARD"                                 # STANDARD, NEARLINE, COLDLINE, ARCHIVE
+versioning_enabled: true                                  # Toggle versioning to retain historical states

@@ -1,20 +1,20 @@
 # GCP Project & Bootstrap Configuration
-create_project: true                        # Toggle to true if you want Terraform to create the project
-project_id: "ankush-tf-framework-v2"           # The unique project ID (required)
-project_name: "Ankush Terraform Framework"  # Display name for the GCP project
-billing_account: ""                         # Associated billing account ID (required for GKE/SQL, optional for basic SA creation)
-org_id: ""                                  # (Optional) Parent GCP Organization ID
-folder_id: ""                               # (Optional) Parent GCP Folder ID
+create_project: true                                # Toggle to true if you want Terraform to create the project
+project_id: "ankush-tf-framework-v2"                # The unique project ID (required)
+project_name: "Ankush Terraform Framework"          # Display name for the GCP project
+billing_account: ""                                 # Associated billing account ID (required for GKE/SQL, optional for basic SA creation)
+org_id: ""                                          # (Optional) Parent GCP Organization ID
+folder_id: ""                                       # (Optional) Parent GCP Folder ID
 
 # APIs to automatically enable in the project
 # Note: Paid APIs (like compute, container/GKE, run) require an active Billing Account linked to the project.
 apis_to_enable:
   - "iam.googleapis.com"
   - "sqladmin.googleapis.com"
-  - "storage.googleapis.com"     # Enables Google Cloud Storage API (free to activate)
-  # - "compute.googleapis.com"   # Requires Billing Account
-  # - "container.googleapis.com" # Requires Billing Account (GKE)
-  # - "run.googleapis.com"       # Requires Billing Account (Cloud Run)
+  - "storage.googleapis.com"                  # Enables Google Cloud Storage API (free to activate)
+  # - "compute.googleapis.com"                # Requires Billing Account
+  # - "container.googleapis.com"              # Requires Billing Account (GKE)
+  # - "run.googleapis.com"                    # Requires Billing Account (Cloud Run)
 
 # Service Account Configuration
 service_account_id: "ankush-tf-sa"
@@ -35,7 +35,7 @@ admin_roles:
   - "roles/resourcemanager.projectIamAdmin"
 
 # Storage Bucket Configuration
-bucket_name: "ankush-tf-framework-bucket-v2" # Needs to be globally unique across all of GCP
-bucket_location: "US"                       # Multi-regional or regional location (e.g. US, EU, us-central1)
-storage_class: "STANDARD"                   # STANDARD, NEARLINE, COLDLINE, ARCHIVE
-versioning_enabled: true                    # Toggle versioning to retain historical states
+bucket_name: "ankush-tf-framework-bucket-v2"              # Needs to be globally unique across all of GCP
+bucket_location: "US"                                     # Multi-regional or regional location (e.g. US, EU, us-central1)
+storage_class: "STANDARD"                                 # STANDARD, NEARLINE, COLDLINE, ARCHIVE
+versioning_enabled: true                                  # Toggle versioning to retain historical states

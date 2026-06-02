@@ -21,7 +21,14 @@ service_account_display_name: "Ankush Terraform SA"
 service_account_description: "Ankush Terraform SA"
 service_account_roles:
   - "roles/owner"
-enable_admin_roles: false
+  # - "roles/serviceusage.serviceUsageAdmin"
+  # - "roles/storage.admin"
+  # - "roles/compute.instanceAdmin"
+  # - "roles/iam.serviceAccountAdmin"
+  # - "roles/iam.serviceAccounts.actAs"
+  # - "roles/resourcemanager.projectIamAdmin"
+
+enable_admin_roles: true
 admin_roles:
   - "roles/iam.serviceAccountAdmin"
   - "roles/resourcemanager.projectIamAdmin"

@@ -1,10 +1,10 @@
 # GCP Project & Bootstrap Configuration
-create_project: true                  # Toggle to true if you want Terraform to create the project
-project_id: "binge-plus-deployment-2696" # The unique project ID (required)
-project_name: "Binge Plus Deployment"    # Display name for the GCP project
-billing_account: ""                   # Associated billing account ID (required for GKE/SQL, optional for basic SA creation)
-org_id: ""                            # (Optional) Parent GCP Organization ID
-folder_id: ""                         # (Optional) Parent GCP Folder ID
+create_project: true                        # Toggle to true if you want Terraform to create the project
+project_id: "ankush-tf-framework"           # The unique project ID (required)
+project_name: "Ankush Terraform Framework"  # Display name for the GCP project
+billing_account: ""                         # Associated billing account ID (required for GKE/SQL, optional for basic SA creation)
+org_id: ""                                  # (Optional) Parent GCP Organization ID
+folder_id: ""                               # (Optional) Parent GCP Folder ID
 
 # APIs to automatically enable in the project
 apis_to_enable:
@@ -15,9 +15,9 @@ apis_to_enable:
   - "run.googleapis.com"       # Instantly enables Cloud Run
 
 # Service Account Configuration
-service_account_id: "gcp-service-account"
-service_account_display_name: "GCP Service Account"
-service_account_description: "GCP Service Account"
+service_account_id: "ankush-tf-sa"
+service_account_display_name: "Ankush Terraform SA"
+service_account_description: "Ankush Terraform SA"
 service_account_roles:
   - "roles/owner"
 enable_admin_roles: false
